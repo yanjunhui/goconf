@@ -7,14 +7,14 @@ import (
 func Test(t *testing.T) {
 
 	//加载配置文件
-	ini, err := NewConfig("./config.ini")
+	conf, err := NewConfig("./config.conf")
 	if err != nil {
 		t.Error(err)
 		return
 	}
 
 	//获取字符串配置
-	value, has := ini.GetString("conf_01", "StringName")
+	value, has := conf.GetString("conf_01", "StringName")
 	if has && value == "aaa" {
 	} else {
 		t.Errorf("获取字符配置项: %s, 获取值: %s", "StringName", value)
@@ -22,7 +22,7 @@ func Test(t *testing.T) {
 
 
 	//获取整型数值配置
-	valueN, has := ini.GetInt("conf_01", "NumberName")
+	valueN, has := conf.GetInt("conf_01", "NumberName")
 	if has && valueN == 123  {
 	} else {
 		t.Errorf("获取整型配置项: %s, 获取值: %d", "NumberName", valueN)
@@ -30,7 +30,7 @@ func Test(t *testing.T) {
 
 
 	//获取布尔类型配置
-	valueB := ini.GetBool("conf_01", "BoolName")
+	valueB := conf.GetBool("conf_01", "BoolName")
 	if valueB  {
 	} else {
 		t.Error("获取布尔值配置项失败")
@@ -38,7 +38,7 @@ func Test(t *testing.T) {
 
 
 	//获取配置2
-	value, has = ini.GetValue("conf_02", "B")
+	value, has = conf.GetValue("conf_02", "B")
 	if has && value == "bbb" {
 	} else {
 		t.Errorf("配置值: %s, 获取值: %s", "B", value)
